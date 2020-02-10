@@ -1,4 +1,5 @@
-export const LOGIN = 'user/LOGIN';
-export const SIGNUP = 'user/SIGNUP';
-export const SET_ACTIVE_USER = 'user/SET_ACTIVE_USER';
-export const LOGOUT = 'user/LOGIN';
+export const LOGIN = 'auth/LOGIN';
+export const SIGNUP = 'auth/SIGNUP';
+export const SET_ACTIVE_USER = 'auth/SET_ACTIVE_USER';
+export const LOGOUT = 'auth/LOGOUT';
+export const SET_HAS_LOGIN_ERROR = 'auth/SET_HAS_LOGIN_ERROR';

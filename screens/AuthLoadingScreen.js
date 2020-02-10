@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import {
-  AsyncStorage,
-  ActivityIndicator,
-  StatusBar,
-  Text,
-  View
-} from 'react-native';
+import React, { useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
-export default function({ navigation }) {
-  const [counter, setCounter] = useState(0);
+import { userSelector, setActiveUser } from '../store/auth';
+import { navigate } from '../services/NavigationService';
+import { SCREENS } from '../constants';
+import authService from '../services/apiServices/AuthService';
+
+export default function AuthLoadingScreenfunction({ navigation }) {
+  const user = useSelector(userSelector);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     bootstrapAsync();
   }, []);
 
   async function bootstrapAsync() {
-    const user = await AsyncStorage.getItem('user');
-    navigation.navigate(user ? 'Main' : 'Auth');
+    if (user) {
+      navigate(SCREENS.MAIN.INDEX);
+      return;
+    }
+    const loggedInUser = await authService.getCurrentUser();
+    dispatch(setActiveUser(loggedInUser));
+    navigate(loggedInUser ? SCREENS.MAIN.INDEX : SCREENS.AUTH.INDEX);
   }
 
   return (
     <View>
-      <ActivityIndicator size="large"></ActivityIndicator>
+      <ActivityIndicator size="large" />
     </View>
   );
 }
