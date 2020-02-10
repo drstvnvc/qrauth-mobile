@@ -1,17 +1,19 @@
 import React from 'react';
-import { AsyncStorage, Text, View, Button, TextInput } from 'react-native';
+import { Text, View, Button, TextInput } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createStackNavigator } from 'react-navigation-stack';
 import { createSwitchNavigator } from 'react-navigation';
 
+import { logout } from '../store/auth';
 import style from '../styles/partials/layout';
 
 function HomeScreen({ navigation }) {
+  const dispatch = useDispatch();
 
-  function logout() {
-    AsyncStorage.removeItem('user');
-    navigation.navigate('AuthLoading');
+  function handleLogout() {
+    dispatch(logout());
   }
+
   return (
     <View style={style.screenContainerCenter}>
       <Text>Home screen</Text>
@@ -19,14 +21,10 @@ function HomeScreen({ navigation }) {
       <Button
         title="Open scanner"
         onPress={() => {
-          console.log('navigate scanner');
           navigation.navigate('Scanner');
         }}
       ></Button>
-      <Button
-        title="Log out"
-        onPress={logout}
-      ></Button>
+      <Button title="Log out" onPress={handleLogout}></Button>
     </View>
   );
 }
@@ -109,32 +107,32 @@ const MainNavigator = createDrawerNavigator({
       Home: {
         screen: HomeScreen,
         navigationOptions: () => ({
-          title: 'HOME'
-        })
+          title: 'HOME',
+        }),
       },
       Scanner: {
         screen: ScannerScreen,
         navigationOptions: () => ({
-          title: 'Scanner'
-        })
+          title: 'Scanner',
+        }),
       },
       SecurityPin: {
         screen: SecurityPinScreen,
         navigationOptions: () => ({
-          title: 'Security pin'
-        })
-      }
+          title: 'Security pin',
+        }),
+      },
     },
     {
-      headerMode: 'float'
+      headerMode: 'float',
     }
   ),
   Settings: {
-    screen: SettingsScreen
+    screen: SettingsScreen,
   },
   Account: {
-    screen: AccountScreen
-  }
+    screen: AccountScreen,
+  },
 });
 
 export default MainNavigator;

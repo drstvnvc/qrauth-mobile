@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View, Button, AsyncStorage } from 'react-native';
+
 import styles from '../../styles/partials/layout';
 
 export default function SignupScreen({ navigation: { navigate } }) {
   async function signup() {
     await AsyncStorage.setItem('user', 'test');
-    console.log('LOGIN');
     navigate('AuthLoading');
   }
   function login() {
