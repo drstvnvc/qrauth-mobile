@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { userSelector, setActiveUser } from '../store/auth';
 import { navigate } from '../services/NavigationService';
-import { SCREENS } from '../constants';
 import authService from '../services/apiServices/AuthService';
+import { SCREENS } from '../constants';
 
-export default function AuthLoadingScreenfunction({ navigation }) {
+export default function AuthLoadingScreen({ navigation }) {
   const user = useSelector(userSelector);
   const dispatch = useDispatch();
 

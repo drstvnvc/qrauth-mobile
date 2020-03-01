@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import styles from '../../styles/partials/layout';
 import { QrEmailInput, QrPasswordInput } from '../../components/shared';
 import { login } from '../../store/auth';
+import { SCREENS } from '../../constants';
 
 const validationRules = Yup.object().shape({
   email: Yup.string()
@@ -29,7 +30,7 @@ export default function LoginScreen({ navigation: { navigate } }) {
   }
 
   function goToSignup() {
-    navigate('Signup');
+    navigate(SCREENS.AUTH.SIGNUP.INDEX);
   }
 
   return (

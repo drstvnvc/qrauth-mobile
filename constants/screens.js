@@ -3,7 +3,14 @@ const SCREENS = {
   AUTH: {
     INDEX: 'Auth',
     LOGIN: 'Login',
-    SIGNUP: 'Signup'
+    SIGNUP: {
+      INDEX: 'Signup',
+      EMAIL_AND_PASSWORD: 'EmailPassword',
+      FIRST_AND_LAST_NAME: 'FirstAndLastName',
+      AVATAR: 'Avatar',
+      SECURITY_PIN: 'SecurityPin',
+      SUCCESS: 'Success'
+    }
   },
   MAIN: {
     INDEX: 'Main'
