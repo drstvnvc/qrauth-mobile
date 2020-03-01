@@ -6,6 +6,7 @@ export default function QrEmailInput(props) {
     <TextInput
       autoCapitalize="none"
       autoCorrect={false}
+      autoCompleteType="email"
       placeholder="Email Address"
       keyboardType="email-address"
       {...props}

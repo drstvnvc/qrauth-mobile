@@ -7,12 +7,19 @@ class AuthService extends BaseApiService {
     const { data } = await this.apiClient.post(ENDPOINTS.AUTH.LOGIN, { email, password });
 
     this.createSession(data);
-    return data;
+    return data.user;
+  };
+
+  signup = async (user) => {
+    const { data } = await this.apiClient.post(ENDPOINTS.AUTH.USERS, user);
+
+    this.createSession(data);
+    return data.user;
   };
 
   logout = async () => {
     await this.destroySession();
-  }
+  };
 
   createSession = data => {
     storageService.setToken(data.token);
